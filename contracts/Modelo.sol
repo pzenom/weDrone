@@ -1,4 +1,4 @@
-pragma solidity 0.4.6;
+pragma solidity 0.5.16;
 
 import "./ModeloEmpresa.sol";
 import "./Ownable.sol";
@@ -30,7 +30,7 @@ contract Modelo is ModeloEmpresa, Owned  {
 
     // mapping(address => (address => Parcela)) private parcelasEmpresa;
 
-    function existeDron (address _direccionDron) public constant returns(bool id) {
+    function existeDron (address _direccionDron) public view returns(bool id) {
         if(dronesList.length == 0) {
             return false;
         }
@@ -38,7 +38,7 @@ contract Modelo is ModeloEmpresa, Owned  {
     }
 
     function insertaDron (address _direccionDron, uint256 _altura_maxima,
-                            åuint256 _altura_minima, uint256 _coste) public onlyOwner returns(uint256 _id) {
+                            uint256 _altura_minima, uint256 _coste) public onlyOwner returns(uint256 _id) {
         require (_altura_maxima > 0 && _altura_minima > 0, "No volamos o que?");
         // require (getDronesCount() >= 0, "No hay drones");
         require (_altura_maxima >= _altura_minima, "Tamos haciéndolo mal con las alturas");

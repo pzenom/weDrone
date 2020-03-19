@@ -1,4 +1,4 @@
-pragma solidity 0.4.6;
+pragma solidity 0.5.16;
 
 contract ModeloEmpresa {
 
@@ -11,16 +11,16 @@ contract ModeloEmpresa {
     mapping(address => Empresa) private empresas;
     address[] private empresasList;
 
-   event LOG_NuevaEmpresa   (address indexed direccionEmpresa, string nombre, uint256 id);
+   event LOG_NuevaEmpresa   (address indexed _direccionEmpresa, string _nombre, uint256 _id);
 
-    function existeEmpresa (address _direccionEmpresa) public view returns(bool id) {
+    function existeEmpresa (address _direccionEmpresa) public view returns(bool _id) {
         if(empresasList.length == 0) {
             return false;
         }
         return (empresas[_direccionEmpresa].direccion == _direccionEmpresa);
     }
 
-    function insertaEmpresa ( address _direccionEmpresa, string _nombre) public returns(uint256 id) {
+    function insertaEmpresa ( address _direccionEmpresa, string memory _nombre) public returns(uint256 _id) {
         require (!existeEmpresa(_direccionEmpresa), "La empresa no existe");
         empresas[_direccionEmpresa].direccion = _direccionEmpresa;
         empresas[_direccionEmpresa].nombre = _nombre;
@@ -33,7 +33,7 @@ contract ModeloEmpresa {
         return empresasList.length;
     }
 
-    function getEmpresa ( address _direccionEmpresa ) public view returns ( string nombre, uint256 id) {
+    function getEmpresa ( address _direccionEmpresa ) public view returns ( string memory _nombre, uint256 _id) {
         require (existeEmpresa(_direccionEmpresa), "La empresa no existe");
         return (empresas[_direccionEmpresa].nombre, empresas[_direccionEmpresa].id);
     }

@@ -1,55 +1,212 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hello World</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>
-    <script language="javascript" type="text/javascript" src="./abi.js"></script>
-    <script>
-        // this will be where our code will be
-        window.addEventListener('load', async() => {
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-            var contract;
-            const contractAddress = "0x83e0C27C6036d5B7c6E0692127823c0e8834128b";
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-            const contractMessage = async() => {
-                contract = new web3.eth.Contract(abi, contractAddress);
-                let message = await contract.methods.getMessage().call();
-                return message;
-            }
-
-            // Modern dapp browsers...
-            if (window.ethereum) {
-                window.web3 = new Web3(ethereum);
-                try {
-                    // Request account access if needed
-                    await ethereum.enable();
-                    var message = await contractMessage();
-                    var elm = document.getElementById("message");
-                    elm.innerHTML = message;
-                } catch (error) {
-                    // User denied account access...
-                    console.error("User denied");
-                }
-            }
-            // Non-dapp browsers...
-            else {
-                console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
-            }
-        });
-    </script>
+    <title>We Do Spray</title>
 </head>
 
 <body>
-    <h1>Esto está funcionando</h1>
-    <div id="message"></div>
-    <div id="test">holaaaa</div>
 
-    <button>Click me to hide paragraphs</button>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">We Do Spray: Clientes</h1>
+            <p class="lead">Gestionamos nuestros Drones y te los llevamos a tu parcela</p>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+
+        <div class="row flex-xl-nowrap">
+            <div class="col-md-12">
+                <div>&nbsp;</div>
+                <div class="card">
+                    <div class="card-header">
+                        Empresas
+                        <button class="btn btn-primary" type="button" id="crearEmpresaBtn" data-toggle="modal" data-target="#crearEmpresasModal">
+                            Crear Empresa
+                        </button>
+                    </div>
+
+                    <!-- Para cada empresa -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 id="empresa_name_0" name="empresa_name_0" class="card-title">Nombre Empresa ( <span id="empresa_address_0" name="empresa_address_0">0xqwereqewytq</span> )</h5>
+                            <p class="card-text">Cr&eacute;dito: <span id="empresa_tokens_0" name="empresa_tokens_0">12</span> DCO</p>
+                        </div>
+
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">id</th>
+                                    <th scope="col">Direcci&oacute;n</th>
+                                    <th scope="col">Altura m&aacute;xima</th>
+                                    <th scope="col">Altura m&iacute;nima</th>
+                                    <th scope="col">Fumigado</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th id="empresa_name_0_" scope="row">1</th>
+                                    <td>0xE125135d243</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    <td>Otto</td>
+                                    <td>
+                                        <button class="btn btn-primary" type="button" id="crearEmpresaBtn" onclick="alert('Invocar formulario')">Fumigar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <!-- Fin para cada empresa -->
+
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="row flex-xl-nowrap">
+            <div class="col-md-6">
+
+                <div class="card">
+                    <div class="card-header">
+                        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                            <a class="navbar-brand" href="#">Empresa</a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                              <span class="navbar-toggler-icon"></span>
+                            </button>
+
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item">
+                                        <a href="#" class="btn btn-primary">Nuevo Dron</a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Dropdown
+                                  </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                                    </li>
+                                </ul>
+                                <form class="form-inline my-2 my-lg-0">
+                                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                </form>
+                            </div>
+                        </nav>
+
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Gestión de Drones</h5>
+                        <p class="card-text">Gestionas los equipos para fumigar.</p>
+                        <a href="#" class="btn btn-primary">Crear Dron</a>
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Fumigar
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Dron 1</a>
+                                <a class="dropdown-item" href="#">Dron 2</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="card">
+                    <div class="card-header">
+                        Propietario
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Gestión de parcelas</h5>
+                        <p class="card-text">Se contratan los servicios desde aquí.</p>
+                        <a href="#" class="btn btn-primary">Crear Parcela</a>
+                        <a href="#" class="btn btn-primary">Contratar Servicio</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div> -->
+
+        <div class="row flex-xl-nowrap">
+            <div class="col-md-12">
+                <div>&nbsp;</div>
+                <div class="card">
+                    <div class="card-header">
+                        Otros
+                    </div>
+                    <div class="card-body">
+                        <h5 name="otros_title" class="card-title"></h5>
+                        <p name="otros_p" class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ventanas Modales -->
+
+        <div class="modal fade" id="crearEmpresasModal" tabindex="-1" role="dialog" aria-labelledby="crearEmpresaModalTitulo" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="crearEmpresaModalTitulo">Nueva empresa</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="nueva_empresa">
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Address:</label>
+                                <input type="text" class="form-control" id="ne_address" value="XX">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Name:</label>
+                                <input type="text" class="form-control" id="ne_nombre" value="Empresa">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <!-- <button type=" button " class="btn btn-primary">Crear</button> -->
+                        <button type=" button " class="btn btn-primary " onclick="creaEmpresa()" data-dismiss="modal">Crear</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="logica.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js " integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n " crossorigin="anonymous "></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js " integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo " crossorigin="anonymous "></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js " integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6 " crossorigin="anonymous "></script>
 </body>
 
 </html>

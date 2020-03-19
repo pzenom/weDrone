@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello World</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>
+    <script language="javascript" type="text/javascript" src="./abi.js"></script>
+    <script>
+        // this will be where our code will be
+        window.addEventListener('load', async() => {
+
+            var contract;
+            const contractAddress = "0x16d774d90D4e57b0E4eDFC8107e9D37967169215";
+
+            console.log("")
+
+            const contractMessage = async() => {
+                contract = new web3.eth.Contract(abi, contractAddress);
+                let message = await contract.methods.getMessage().call();
+                return message;
+            }
+
+            // Modern dapp browsers...
+            if (window.ethereum) {
+                window.web3 = new Web3(ethereum);
+                try {
+                    // Request account access if needed
+                    await ethereum.enable();
+                    var message = await contractMessage();
+                    var elm = document.getElementById("message");
+                    elm.innerHTML = message;
+                } catch (error) {
+                    // User denied account access...
+                    console.error("User denied");
+                }
+            }
+            // Non-dapp browsers...
+            else {
+                console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Esto está funcionando</h1>
+    <div id="message">Si ves esto, no está funcionando la llamada al SC</div>
+    <div id="test"><br />holaaaa</div>
+
+    <button>Click me to hide paragraphs</button>
+</body>
+
+</html>
