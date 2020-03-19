@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>We Do Drone</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">We Do Spray: Clientes</h1>
+            <p id="slogan" class="lead">Gestionamos nuestros Drones y te los llevamos a tu parcela</p>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+
+        <div class="row flex-xl-nowrap">
+            <!-- Columna Drones -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Gestión de Drones
+                        <button class="btn btn-primary" type="button" id="crearDronBtn" data-toggle="modal" data-target="#crearDronModal"> + </button>
+                    </div>
+
+                    <!-- Para cada dron -->
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- <h5 id="miToken_name_0" name="miToken_name_0" class="card-title">Nombre miToken ( <span id="miToken_address_0" name="miToken_address_0">0xqwereqewytq</span> )</h5> -->
+                            <p class="card-text">Cr&eacute;dito: <span id="miToken_tokens_0" name="miToken_tokens_0">12</span> DCO - Total Drones (<span id="totalDrones">0</span>)</p>
+                        </div>
+
+                        <table id="dron_table" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">id</th>
+                                    <th scope="col">Direcci&oacute;n</th>
+                                    <th scope="col">Altura m&aacute;xima</th>
+                                    <th scope="col">Altura m&iacute;nima</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Coste</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dron_table_body">
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <!-- Fin para cada miToken -->
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Fin Columna Drones -->
+            <!-- Columa de Empresas-->
+            <div class="col-md-">
+                <div class="card">
+                    <div class="card-header">
+                        Gesti&oacute;n de Parcelas
+                        <button class="btn btn-primary" type="button" id="crearmiParcelaBtn" data-toggle="modal" data-target="#crearParcelaModal">
+                            +
+                        </button>
+                    </div>
+
+                    <!-- Para cada Empresa -->
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- <h5 id="miToken_name_0" name="miToken_name_0" class="card-title">Nombre miToken ( <span id="miToken_address_0" name="miToken_address_0">0xqwereqewytq</span> )</h5> -->
+                            <p class="card-text">Cr&eacute;dito: <span id="empresa_tokens_0" name="empresa_tokens_0">12</span> DCO - Total Parcelas (<span id="totalParcelas">0</span>)</p>
+                        </div>
+
+                        <table id="parcela_table" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">id</th>
+                                    <th scope="col">Direcci&oacute;n</th>
+                                    <th scope="col">Altura m&aacute;xima</th>
+                                    <th scope="col">Altura m&iacute;nima</th>
+                                    <th scope="col">Pesticida</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <!-- Fin para cada miToken -->
+
+                </div>
+            </div>
+            <!-- Fin columna miTokens-->
+        </div>
+
+        <!-- Ventanas Modales -->
+        <!-- Modal Dron -->
+        <div class="modal fade" id="crearDronModal" tabindex="-1" role="dialog" aria-labelledby="crearDronModalTitulo" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="crearDronModalTitulo">Nuevo Dron</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="nuevo_dron">
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Address:</label>
+                                <input type="text" class="form-control" id="nd_address" value="0xd95e301053d061ba5F72D693f56B9923B2572967">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Altura M&aacute;xima:</label>
+                                <input type="text" class="form-control" id="nd_hmax" value="20">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Altura M&iacute;nima:</label>
+                                <input type="text" class="form-control" id="nd_hmin" value="4">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Coste:</label>
+                                <input type="text" class="form-control" id="nd_coste" value="25">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <!-- <button type=" button " class="btn btn-primary">Crear</button> -->
+                        <button type=" button " class="btn btn-primary " onclick="creaDron()" data-dismiss="modal">Crear</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Parcelas -->
+        <div class="modal fade" id="crearParcelaModal" tabindex="-1" role="dialog" aria-labelledby="crearParcelaModalTitulo" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="crearParcelaModalTitulo">Nueva Parcela</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="nueva_parcela">
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Address:</label>
+                                <input type="text" class="form-control" id="np_address" value="0x963b42a950576831357A49468b778C96ff255605">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Altura M&aacute;xima:</label>
+                                <input type="text" class="form-control" id="np_hmax" value="20">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Altura M&iacute;nima:</label>
+                                <input type="text" class="form-control" id="np_hmin" value="4">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Tipo de Pesticida:</label>
+                                <select id="np_pesticida">
+                                    <option value="0">Pesticida A</option>
+                                    <option value="1">Pesticida B</option>
+                                    <option value="2">Pesticida C</option>
+                                    <option value="3">Pesticida D</option>
+                                    <option value="4">Pesticida E</option>
+                                  </select>
+                                <!-- <input type="text" class="form-control" id="nd_coste" value="25"> -->
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <!-- <button type=" button " class="btn btn-primary">Crear</button> -->
+                        <button type=" button " class="btn btn-primary " onclick="crearParcela()" data-dismiss="modal">Crear</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Solicitar Servicio -->
+        <div class="modal fade" id="solicitaServicio" tabindex="-1" role="dialog" aria-labelledby="solicitaServicioTitulo" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="solicitaServicioTitulo">Atención</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="alertModal_message">Debes elegir para calcular costes y autorizar el gasto: </p>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Drones viables:</label>
+                            <select id="ss_dronesviables">
+                                <option id="option_dron_id" value="0">Dron <span id="dron_id">28</span> (Coste:<span id="dron_id_coste">28</span>) </option>
+                                <option id="option_dron_id" value="0">Dron <span id="dron_id">30</span> (Coste:<span id="dron_id_coste">56</span>) </option>
+                            </select>
+                            <!-- <input type="text" class="form-control" id="nd_coste" value="25"> -->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button id="botonServicioContratado" type=" button " class="btn btn-primary " data-dismiss="modal">Autorizar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de alertas -->
+        <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="crearAlertaModalTitulo" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="crearlertaModalTitulo">Atención</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="alertModal_message">Mensaje</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Vale!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <!-- ESTO ES LO QUE FUNCIONAAAA -->
+        <div class="row flex-xl-nowrap">
+            <div class="col-md-12">
+                <div>&nbsp;</div>
+                <div class="card">
+                    <div class="card-header">
+                        Otros
+                    </div>
+                    <div class="card-body" id="otros_card_body">
+                        <h5 name="otros_title" class="card-title"></h5>
+                        <p name="otros_p" class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="width: 650px;">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1>Personaliza el Slogan</h1>
+                    <hr/>
+                    <br/>
+                    <div id="content">
+                        <div role="form">
+                            <div class="form-group" style="display:inline;">
+                                <div class="input-group">
+                                    <input class="form-control input-lg" name="textito" id="textito" value="Este Texto quiero grabarlo">
+                                    </input>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary btn-lg" onclick="cambiarTexto()">Pulsa esto</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Esto es para logs si te interesa -->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.35/dist/web3.min.js"></script>
+        <script src="js/abi_token.js"></script>
+        <script src="js/abi_modelo.js"></script>
+        <script src="js/modelo.js"></script>
+
+
+</body>
+
+</html>

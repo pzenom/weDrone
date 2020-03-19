@@ -2,6 +2,7 @@ pragma solidity 0.5.16;
 
 import "./ModeloEmpresa.sol";
 import "./Ownable.sol";
+import "./MyToken.sol";
 
 contract Modelo is ModeloEmpresa, Owned  {
 
@@ -27,6 +28,7 @@ contract Modelo is ModeloEmpresa, Owned  {
 
     mapping(address => Dron) private drones;
     address[] private dronesList;
+
 
     // mapping(address => (address => Parcela)) private parcelasEmpresa;
 
@@ -104,7 +106,8 @@ contract Modelo is ModeloEmpresa, Owned  {
 
     function startSpray (address _direccionDron ) public onlyOwner {
         require(existeDron(_direccionDron), "Nonexistent dron");
-        require(drones[_direccionDron].estado == ESTADO.ASIGNADO, "DRON STATUS INCORRECT ==>  IS NOT ASIGNADO");
+        // Me puede interesar fumigar porque si, este require no seria necesario
+        // require(drones[_direccionDron].estado == ESTADO.ASIGNADO, "DRON STATUS INCORRECT ==>  IS NOT ASIGNADO");
         setTokenState(_direccionDron, ESTADO.FUMIGANDO);
     }
 
